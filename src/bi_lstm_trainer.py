@@ -1,4 +1,4 @@
-from lib.LSTM_Tagger import LSTM_Tagger
+from lib.BiLSTM_Tagger import BiLSTM_Tagger
 from util.utils import make_vocabs
 import torch.nn.functional as F
 import torch.optim as optim
@@ -11,10 +11,10 @@ def batchify(train_data):
       words, gold_tags = zip(*tagged_sentence)
       yield torch.tensor(words, dtype=torch.long), torch.tensor(gold_tags, dtype=torch.long)
 
-def train_ltsm(train_data, n_epochs=1, batch_size=100):
+def train_bi_ltsm(train_data, n_epochs=1):
     train_data = list(train_data)
     vocab_words, vocab_tags = make_vocabs(train_data)
-    model = LSTM_Tagger(50, 300, len(vocab_words), len(vocab_tags))
+    model = BiLSTM_Tagger(50, 300, len(vocab_words), len(vocab_tags))
     loss_function = nn.NLLLoss()
     optimizer = optim.SGD(model.parameters(), lr=0.1)
 

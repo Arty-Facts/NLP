@@ -1,6 +1,6 @@
 from util.utils import read_data, filter_data, make_vocabs
 from util.tagger_utils import output, encode, accuracy
-from src.bilstm_trainer import train_biltsm
+from src.bi_lstm_trainer import train_bi_ltsm
 from constants.globals import EPOCHS
 import bz2
 
@@ -17,9 +17,9 @@ def eval_tagger(train_file, dev_file):
     encoded_train_data = encode(train_data, vocab_words, vocab_tags)
     encoded_dev_data = encode(dev_data, vocab_words, vocab_tags)
 
-    lstm_tagger = train_biltsm(encoded_train_data, n_epochs=EPOCHS)
-    print("Tagger accuracy for ltsm:")
-    print("{:.4f}".format(accuracy(lstm_tagger, encoded_dev_data)))
+    bi_lstm_tagger = train_bi_ltsm(encoded_train_data, n_epochs=EPOCHS)
+    print("Tagger accuracy for BiLSTM:")
+    print("{:.4f}".format(accuracy(bi_lstm_tagger, encoded_dev_data)))
     print()
 
 if __name__ == '__main__':
