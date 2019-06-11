@@ -16,11 +16,8 @@ def batchify(train_data, batch_size, classifier):
         by.append(gold_tag)
         pred_tags.append(gold_tag)
         if len(by) >= batch_size:
-          ans_bx = torch.stack(bx)
-          ans_by = torch.tensor(by, dtype=torch.long)
-          bx = []
-          by = []
-          yield ans_bx, ans_by
+          yield torch.stack(bx), torch.tensor(by, dtype=torch.long)
+          bx , by = [] ,[]
 
 
 def train_neural(train_data, n_epochs=1, batch_size=100):
@@ -28,7 +25,7 @@ def train_neural(train_data, n_epochs=1, batch_size=100):
     vocab_words, vocab_tags = make_vocabs(train_data)
     classifier = NeuralTagger(vocab_words, vocab_tags)
     optimizer = optim.Adam(classifier.model.parameters())
-    for _ in range(1, n_epochs + 1):
+    for i in range(1, n_epochs + 1):
         random.shuffle(train_data)
         for bx, by in batchify(train_data, batch_size, classifier):
             optimizer.zero_grad()

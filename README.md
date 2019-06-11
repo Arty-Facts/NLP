@@ -8,26 +8,6 @@ python3 main.py
 ```
 ## Result from latest run 
 ```
-1 epoch
-Tagger accuracy for perceptron:
-0.8732
-
-Tagger accuracy for neural:
-0.9075
-
-Tagger accuracy for feature engenerd perceptron:
-0.9172
-
-Tagger accuracy for gold perceptron:
-0.9382
-
-UAS score for perceptron:
-0.6659
-
-UAS score for neural:
-0.6900
-
---------
 5 epochs
 Taggers:
 Tagger accuracy for perceptron:
@@ -38,6 +18,9 @@ Tagger accuracy for neural:
 
 Tagger accuracy for feature engineerd perceptron:
 0.9353
+
+Tagger accuracy for ltsm:
+0.8365
 
 Tagger accuracy for gold perceptron:
 0.9479
